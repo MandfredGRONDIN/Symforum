@@ -1,0 +1,42 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Categories{% endblock %}
+
+{% block body %}
+<style>
+.text-center{
+    text-align: center;
+}
+.table th {
+    background-color: #f2f2f2;
+    display: flex;
+    padding: 1em;
+}
+</style>
+<div class="example-wrapper">
+    <h1>{{ category.categoryName }}</h1>
+
+            <table class="table">
+                <thead>
+                    <tr><th>{{ category.categoryName|upper }} 
+                        <div>
+                            <a href="{{ path('app_categories_edit', {'id': category.id}) }}">edit</a>
+                            {{ include('categories/_delete_form.html.twig') }}
+                        </div></th></tr>
+                </thead>
+                <tbody>
+                {% for board in category.boards %}
+                    <tr>
+                        
+                        <td><a href="{{ path('app_board_show',{'id':board.id})}}">{{ board.boardName }}</a></td>
+                        
+                    </tr>
+                {% endfor %}</tbody>
+            
+    </table>
+<div class="text-center">
+<a href="{{ path('app_board_new') }}">Create new board</a></br>
+    <a href="{{ path('app_home') }}">Back to home</a>
+</div>
+</div>
+{% endblock %}

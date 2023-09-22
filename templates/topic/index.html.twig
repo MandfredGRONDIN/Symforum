@@ -1,0 +1,43 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Topic index{% endblock %}
+
+{% block body %}
+<div class="example-wrapper">
+    <h1>Topic Management</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Number_view</th>
+                <th>Created_at</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for topic in topics %}
+            <tr>
+                <td>{{ topic.title }}</td>
+                <td>{{ topic.content }}</td>
+                <td>{{ topic.numberView }}</td>
+                <td>{{ topic.createdAt ? topic.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_topic_show', {'id': topic.id}) }}">show</a>
+                    <a href="{{ path('app_topic_edit', {'id': topic.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+<div class="text-center">
+    <a href="{{ path('app_topic_new') }}">Create a new topic</a></br>
+    <a href="{{ path('app_home') }}">Back to home</a>
+    </div>
+    </div>
+{% endblock %}

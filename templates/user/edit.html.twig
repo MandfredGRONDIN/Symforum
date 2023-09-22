@@ -1,0 +1,75 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block body %}
+<style>
+h1{
+    text-align: center;
+}
+.text-center{
+    text-align: center;
+    margin:1em;
+}
+    .form-wrapper {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f7f7f7;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-wrapper div {
+        margin-bottom: 15px;
+    }
+
+    .form-wrapper label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .form-wrapper input,
+    .form-wrapper #board_category {
+        width: 96%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+    }
+
+    .form-wrapper #board_category {
+        width: 100%;
+    }
+
+    .form-wrapper .btn {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .form-wrapper .btn:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<h1>Edit User</h1>
+
+
+<div class="form-wrapper">
+    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+</div>
+<div class="text-center">{{ include('user/_delete_form.html.twig') }}</div>
+
+<div class="text-center">
+<a href="{{ path('app_user_index') }}">Back to list</a>
+</div>
+
+{% endblock %}

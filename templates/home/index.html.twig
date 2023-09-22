@@ -1,0 +1,30 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Symforum{% endblock %}
+
+{% block body %}
+
+
+<div class="example-wrapper">
+    <h1>Welcome to Symforum</h1>
+
+    
+            {% for category in categories %}
+            <table class="table">
+                <thead>
+                    <tr><th><a href="{{ path('app_categories_show',{'id':category.id})}}">{{ category.categoryName|upper }}</a></th></tr>
+                </thead>
+                <tbody>
+                {% for board in category.boards %}
+                    <tr>
+                        
+                        <td><a href="{{ path('app_board_show',{'id':board.id})}}">{{ board.boardName }}</a></td>
+                        
+                    </tr>
+                {% endfor %}</tbody>
+            
+    </table>{% endfor %}
+    <a href="{{ path('app_categories_new') }}">Create a new category</a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}New Categories{% endblock %}
+
+{% block body %}<style>
+.form-wrapper{
+  max-width: 600px; /* Set the maximum width of the form */
+  margin: 0 auto; /* Center-align the form horizontally */
+  padding: 20px; /* Add some padding for spacing */
+  background-color: #f7f7f7; /* Background color for the form */
+  border: 1px solid #ddd; /* Border around the form */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle 3D effect */
+}
+/* Form Fields */
+.form-wrapper #categories div{
+  margin-bottom: 15px; /* Spacing between form groups */
+}
+
+.form-wrapper #categories label {
+    display: block; /* Display labels as blocks for vertical alignment */
+    margin-bottom: 5px; /* Spacing below the label */
+    font-weight: bold; /* Bold label text */
+}
+
+.form-wrapper #categories input {
+    width: 96%; /* Make input fields take up the full width */
+    padding: 10px; /* Add padding for input fields */
+    border: 1px solid #ddd; /* Border for input fields */
+    border-radius: 3px; /* Rounded corners for input fields */
+}
+/* Checkbox Group */
+.form-wrapper #categories #categories_roles{
+    display: flex; /* Display labels as flex for horizontal alignment */
+    width: 88%;
+}
+
+/* Checkbox Label */
+.form-wrapper #categories #categories_roles label {
+    display: block; /* Display labels as blocks for vertical alignment */
+    margin-bottom: 5px; /* Spacing below the label */
+    font-weight: 500;
+}
+
+div#categories_roles :nth-child(2n) {
+    margin: 0 1em;
+}
+
+/* Form Buttons */
+.form-wrapper .btn{
+  display: block; /* Display buttons as blocks for vertical alignment */
+  width: 100%; /* Make buttons take up the full width */
+  padding: 10px; /* Add padding for buttons */
+  background-color: #007bff; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none; /* Remove button borders */
+  border-radius: 3px; /* Rounded corners for buttons */
+  cursor: pointer; /* Add a pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth background color transition on hover */
+}
+
+.form-button:hover {
+  background-color: #0056b3; /* Change button color on hover */
+}
+</style>
+<div class="example-wrapper">
+    <h1>Create new Categories</h1>
+    
+    <div class="form-wrapper">
+
+    {{ include('categories/_form.html.twig') }}
+    </div>
+
+<a href="{{ path('app_home') }}">back to home</a>
+</div>
+{% endblock %}

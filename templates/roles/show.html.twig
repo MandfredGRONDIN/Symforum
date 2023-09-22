@@ -1,0 +1,72 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Roles{% endblock %}
+
+{% block body %}
+<style>
+.text-center{
+    text-align: center;
+}
+    .example-wrapper { margin: 1em auto; max-width: 1240px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        padding-bottom: 1em;
+    }
+    .table th, .table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    .table th {
+        background-color: #f2f2f2;
+        display: flex;
+        justify-content: space-between;
+        padding: 1em;
+    }
+    .table th div {
+        display: flex;
+    }
+    .table th div a {
+        margin-right: 0.5em;
+    }
+</style>
+<div class="example-wrapper">
+    <h1>{{ role.roleName }}</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>{{ role.roleName|upper }}
+                    <div>
+                        <a href="{{ path('app_roles_edit', {'id': role.id}) }}">edit</a>
+                        {{ include('roles/_delete_form.html.twig') }}
+                    </div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Id</td>
+                <td>{{ role.id }}</td>
+            </tr>
+            <tr>
+                <td>Role_name</td>
+                <td>{{ role.roleName }}</td>
+            </tr>
+            <tr>
+                <td>Created_at</td>
+                <td>{{ role.createdAt ? role.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+<div class="text-center">
+    <a href="{{ path('app_roles_index') }}">back to list</a></br>
+
+    <a href="{{ path('app_home') }}">back to home</a>
+    </div>
+</div>
+{% endblock %}

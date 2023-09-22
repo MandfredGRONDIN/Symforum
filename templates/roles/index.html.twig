@@ -1,0 +1,41 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Roles index{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h1>Role Management</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Role_name</th>
+                <th>Created_at</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for role in roles %}
+                <tr>
+                    <td>{{ role.roleName }}</td>
+                    <td>{{ role.createdAt ? role.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>
+                        <a href="{{ path('app_roles_show', {'id': role.id}) }}">show</a>
+                        <a href="{{ path('app_roles_edit', {'id': role.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">no records found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+<div class="text-center">
+    <a href="{{ path('app_roles_new') }}">Create a new role</a></br>
+    <a href="{{ path('app_home') }}">Back to home</a>
+    </div>
+</div>
+{% endblock %}

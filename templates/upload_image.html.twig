@@ -1,0 +1,23 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Upload an Image{% endblock %}
+
+{% block body %}
+<div class="example-wrapper">
+    <h1>Upload an Image</h1>
+
+    {{ form_start(form) }}
+
+    {{ form_row(form.imageFile, {
+        label: 'Choose an image',
+        attr: {
+            accept: 'image/*', 
+        }
+    }) }}
+
+    <button type="submit" class="btn btn-primary">Upload</button>
+
+    {{ form_end(form) }}
+
+</div>
+{% endblock %}

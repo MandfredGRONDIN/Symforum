@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Message{% endblock %}
+
+{% block body %}
+    <div class="form-reply">
+        {{ include('message/_form.html.twig') }}
+    </div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Board index{% endblock %}
+
+{% block body %}
+<div class="example-wrapper">
+    <h1>Board Management</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Board_name</th>
+                <th>Created_at</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for board in boards %}
+            <tr>
+                <td>{{ board.boardName }}</td>
+                <td>{{ board.createdAt ? board.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_board_show', {'id': board.id}) }}">show</a>
+                    <a href="{{ path('app_board_edit', {'id': board.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+<div class="text-center">
+    <a href="{{ path('app_board_new') }}">Create a new board</a></br>
+    <a href="{{ path('app_home') }}">Back to home</a>
+    </div>
+    </div>
+{% endblock %}

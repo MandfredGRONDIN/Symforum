@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        /* Reset some default styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Center the form */
+        .form-container {
+            width: 360px;
+            margin: auto;
+            margin-top: 50px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f8f8f8;
+        }
+
+        /* Style form elements */
+        form{
+            display: flex;
+            flex-direction: column;
+        }
+        .form-container h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .form-container label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .form-control {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .form-control:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* Error message */
+        .alert-danger {
+            color: #d9534f;
+            background-color: #f2dede;
+            border-color: #ebccd1;
+            padding: 10px;
+            border-radius: 3px;
+            margin-bottom: 15px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+<div class="form-container">
+    <h1>Register</h1>
+
+    {{ form_errors(registrationForm) }}
+
+    {{ form_start(registrationForm) }}
+        <label for="{{ registrationForm.firstname.vars.id }}">First Name</label>
+        {{ form_widget(registrationForm.firstname, {'attr': {'class': 'form-control'}}) }}
+
+        <label for="{{ registrationForm.lastname.vars.id }}">Last Name</label>
+        {{ form_widget(registrationForm.lastname, {'attr': {'class': 'form-control'}}) }}
+
+        <label for="{{ registrationForm.pseudo.vars.id }}">Pseudo</label>
+        {{ form_widget(registrationForm.pseudo, {'attr': {'class': 'form-control'}}) }}
+
+        <label for="{{ registrationForm.email.vars.id }}">Email</label>
+        {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+
+        <label for="{{ registrationForm.plainPassword.vars.id }}">Password</label>
+        {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
+
+        {{ form_row(registrationForm.agreeTerms) }}
+
+        <button type="submit" class="btn">Register</button>
+    {{ form_end(registrationForm) }}
+    
+    <p>Déjà un compte ? <a href="{{ path('app_login')}}">Connectez-vous</a> </p>
+</div>
+{% endblock %}

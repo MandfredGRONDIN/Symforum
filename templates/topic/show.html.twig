@@ -1,0 +1,84 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Topic{% endblock %}
+
+{% block body %}
+<style>
+.text-center{
+    text-align: center;
+}
+    .card { 
+        background: #E1EBF2; 
+        padding: 1em 2em;
+        border-radius: 5px;
+        margin-bottom: 0.5em;
+    }
+    .card .title-card, .card-reply .title-card{ 
+        margin-top: 0;
+    }
+    .card-reply {
+        background: #E1EBF2; 
+        padding: 1em 2em;
+        border-radius: 5px;
+        margin-bottom: 0.5em;
+    }
+    .card-reply:nth-child(2n){ 
+        background: #ECF3F7;
+    }
+    .form-reply {
+        background: #f2f2f2;
+        padding: 1em;
+        margin-bottom: 2em;
+    }
+    .form-reply form {
+        display: flex;
+        width: 1080px;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .form-reply #message {
+        display: flex;
+        width: 75%;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .form-reply #message div :first-child {
+        margin-right: 0.5em;
+    }
+    img.topic-image {
+    max-width: 100%; /* Pour que l'image ne dépasse pas de son conteneur */
+    height: auto; /* Pour conserver le rapport hauteur/largeur original de l'image */
+    display: block; /* Pour supprimer l'espace vide sous l'image (espace réservé pour le texte) */
+    margin-top: 10px; /* Espace entre le texte et l'image */
+    border: 1px solid #ccc; /* Une bordure légère autour de l'image */
+    border-radius: 5px; /* Coins arrondis pour l'image */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Ombre légère pour l'image */
+}
+</style>
+<div class='example-wrapper'>
+
+    <div class="card">
+        <h1 class="title-card">{{ topic.title }}</h1>
+        <div class"tetière">{{ topic.createdAt ? topic.createdAt|date('Y-m-d H:i:s') : '' }} - {{topic.user.pseudo}} </div>
+        {{ topic.content }}
+
+        {% if topic.imageFileName %}
+            <img src="{{ asset('/uploads/images/' ~ topic.imageFileName) }}" alt="Topic Image" class="topic-image">
+        {% endif %}
+    </div>
+    {% for messages in topic.messages %}
+        <div class="card-reply">
+            <h2 class="title-card">{{ topic.title }} - Reply</h2>
+            <div class"tetière">{{ messages.createdAt ? messages.createdAt|date('Y-m-d H:i:s') : '' }} - {{ messages.user.pseudo}}</div>
+            {{ messages.content }}
+            {% if messages.imageFileName %}
+            <img src="{{ asset('/uploads/images/' ~ messages.imageFileName) }}" alt="Message Image" class="topic-image">
+        {% endif %}
+        </div>
+    {% endfor %}
+    {{ include('message/new.html.twig')}}
+    <a href="{{ path('app_board_show',{'id':topic.board.id}) }}">back to board</a>
+
+    {{ include('topic/_delete_form.html.twig') }}
+</div>
+{% endblock %}

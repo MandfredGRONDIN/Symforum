@@ -1,0 +1,55 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Board{% endblock %}
+
+{% block body %}
+<style>
+.text-center{
+    text-align: center;
+}
+.table th {
+    background-color: #f2f2f2;
+    display: table-cell;
+    padding: 1em;
+}
+.table th div{
+    display: flex;
+    justify-content: space-between;
+}
+</style>
+<div class='example-wrapper'>
+    <h1>{{board.boardName}}</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    {{ board.boardName|upper }} 
+                </th>
+                <th>
+                    <div>
+                        Nombre de vues
+                        <div>
+                        <a href="{{ path('app_board_edit', {'id': board.id}) }}">edit</a>
+                        {{ include('board/_delete_form.html.twig') }}
+                        <div>
+                    </div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for topic in board.topics %}
+            <tr>
+                
+                <td><a href="{{ path('app_topic_show',{'id':topic.id})}}">{{ topic.title }}</a></td>
+                <td>{{ topic.numberView }}</td>
+            </tr>
+        {% endfor %}</tbody>
+    
+    </table>
+    <div class="text-center">
+<a href="{{ path('app_topic_new') }}">Create a new topic</a></br>
+    <a href="{{ path('app_categories_show',{'id':board.category.id}) }}">back to category</a>
+</div>
+</div>
+{% endblock %}
